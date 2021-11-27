@@ -1,11 +1,11 @@
 {
   "name": "gestionusuario",
-  "version": "1",
+  "version": "1.0.0",
   "description": "API GestionUsuario",
   "main": "index.js",
   "scripts": {
-	"prestart": "npm install",
-	"start": "node index.js"
+    "prestart": "npm install",
+    "start": "node index.js"
   },
   "keywords": [
     "swagger"
