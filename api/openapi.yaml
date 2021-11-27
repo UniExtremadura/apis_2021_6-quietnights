@@ -1,0 +1,488 @@
+openapi: 3.0.0
+info:
+  title: GestionUsuario
+  description: API GestionUsuario
+  contact:
+    email: cgilcham@alumnos.unex.es
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: "1"
+servers:
+- url: https://virtserver.swaggerhub.com/UEX-IST-G1/GestionUsuario/v1
+  description: API de GestionUsuario
+tags:
+- name: datosPersonales
+  description: Llamadas relacionadas con la gestion de datos personales
+- name: datosBancarios
+  description: Llamadas relacionadas con la gestion de datos bancarios
+- name: datosFacturacion
+  description: Llamadas relacionadas con la gestion de la facturacion de recibos
+paths:
+  /datosPersonales/{idUsuario}:
+    get:
+      tags:
+      - datosPersonales
+      summary: para extraer toda la información de datos personales de un usuario
+        concreto
+      description: Indicando idUsuario se extraen sus datos personales en el sistema
+      operationId: getDatosPersonales
+      parameters:
+      - name: idUsuario
+        in: path
+        description: Id del Usuario
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: number
+          example: 1
+      responses:
+        "200":
+          description: datos del usuario encontrados
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DatosPersonales'
+                x-content-type: application/json
+        "400":
+          description: "entrada incorrecta, object incorrecto"
+        "404":
+          description: el objeto no existe
+      x-swagger-router-controller: DatosPersonales
+    put:
+      tags:
+      - datosPersonales
+      summary: actualiza los datos personales para un usuario concreto
+      description: Indicando idUsuario se actualizan sus datos personales en el sistema
+      operationId: putDatosPersonales
+      parameters:
+      - name: idUsuario
+        in: path
+        description: Id del Usuario
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: number
+          example: 1
+      requestBody:
+        description: Datos Personales a actualizar
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatosPersonales'
+      responses:
+        "201":
+          description: objeto creado
+        "400":
+          description: "entrada incorrecta, object incorrecto"
+        "404":
+          description: el objeto no existe
+        "409":
+          description: conflicto de acceso
+      x-swagger-router-controller: DatosPersonales
+    delete:
+      tags:
+      - datosPersonales
+      summary: para dar de baja un usuario en el sistema
+      description: Indicando idUsuario se eliminan sus datos en el sistema
+      operationId: delDatosPersonales
+      parameters:
+      - name: idUsuario
+        in: path
+        description: Id del Usuario
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: number
+          example: 1
+      responses:
+        "200":
+          description: usuario borrado con éxito
+        "400":
+          description: "entrada incorrecta, object incorrecto"
+      x-swagger-router-controller: DatosPersonales
+  /datosPersonales:
+    post:
+      tags:
+      - datosPersonales
+      summary: para dar de alta un usuario en el sistema
+      description: "Se incluyen sus datos en el sistema y se devuelve el objeto creado,\
+        \ incluído su id"
+      operationId: addDatosPersonales
+      requestBody:
+        description: Datos Personales a insertar
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatosPersonales'
+      responses:
+        "200":
+          description: usuario creado con éxito
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DatosPersonales'
+                x-content-type: application/json
+        "400":
+          description: "entrada incorrecta, object incorrecto"
+      x-swagger-router-controller: DatosPersonales
+  /datosBancarios/{idUsuario}:
+    get:
+      tags:
+      - datosBancarios
+      summary: busca los datos bancarios de un usuario concreto
+      description: "Indicando idUsuario, se buscan los datos bancarios para el idUsuario"
+      operationId: getDatosBancarios
+      parameters:
+      - name: idUsuario
+        in: path
+        description: Id del Usuario
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: number
+          example: 1
+      responses:
+        "200":
+          description: datos bancarios del usuario encontrados
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DatosBancarios'
+                x-content-type: application/json
+        "400":
+          description: "entrada incorrecta, object incorrecto"
+        "404":
+          description: el objeto no existe
+      x-swagger-router-controller: DatosBancarios
+    put:
+      tags:
+      - datosBancarios
+      summary: actualiza los datos bancarios para el idUsuario
+      description: actualiza los datos bancarios para el idUsuario
+      operationId: putDatosBancarios
+      parameters:
+      - name: idUsuario
+        in: path
+        description: Id del Usuario
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: number
+          example: 1
+      requestBody:
+        description: Datos Bancarios a actualizar
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatosBancarios'
+      responses:
+        "201":
+          description: datos bancarios actualizados
+        "400":
+          description: "entrada incorrecta, object incorrecto"
+        "404":
+          description: el objeto no existe
+        "409":
+          description: conflicto de acceso
+      x-swagger-router-controller: DatosBancarios
+    post:
+      tags:
+      - datosBancarios
+      summary: para dar de alta los datos bancarios para un usuario en el sistema
+      description: Indicando idUsuario se incluyen sus datos bancarios en el sistema
+      operationId: postDatosBancarios
+      parameters:
+      - name: idUsuario
+        in: path
+        description: Id del Usuario
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: number
+          example: 1
+      requestBody:
+        description: Datos Bancarios a insertar
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatosBancarios'
+      responses:
+        "200":
+          description: datos bancarios creados
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DatosBancarios'
+                x-content-type: application/json
+        "400":
+          description: "entrada incorrecta, object incorrecto"
+      x-swagger-router-controller: DatosBancarios
+    delete:
+      tags:
+      - datosBancarios
+      summary: para dar de baja los datos bancarios de un usuario en el sistema
+      description: Indicando idUsuario se eliminan sus datos bancarios en el sistema
+      operationId: delDatosBancarios
+      parameters:
+      - name: idUsuario
+        in: path
+        description: Id del Usuario
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: number
+          example: 1
+      responses:
+        "200":
+          description: datos bancarios eliminados
+        "400":
+          description: "entrada incorrecta, object incorrecto"
+      x-swagger-router-controller: DatosBancarios
+  /datosFacturacion/{idUsuario}:
+    get:
+      tags:
+      - datosFacturacion
+      summary: para extraer toda la información de datos de la facturacion de un usuario
+        concreto
+      description: Indicando idUsuario se extrae su recibo emitido por el sistema
+        para un mes concreto
+      operationId: getDatosFacturacion
+      parameters:
+      - name: idUsuario
+        in: path
+        description: Id del Usuario
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: number
+          example: 1
+      responses:
+        "200":
+          description: datos de facturacion encontrados
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DatosFacturacion'
+                x-content-type: application/json
+        "400":
+          description: "entrada incorrecta, object incorrecto"
+        "404":
+          description: el objeto no existe
+      x-swagger-router-controller: DatosFacturacion
+    put:
+      tags:
+      - datosFacturacion
+      summary: actualiza los datos de emitidos de facturacion para un usuario concreto
+      description: Indicando idUsuario se actualiza su informacion del recibo de facturacion
+        emitido
+      operationId: putDatosFacturacion
+      parameters:
+      - name: idUsuario
+        in: path
+        description: Id del Usuario
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: number
+          example: 1
+      requestBody:
+        description: Datos de facturacion a actualizar
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatosFacturacion'
+      responses:
+        "201":
+          description: objeto actualizado
+        "400":
+          description: "entrada incorrecta, object incorrecto"
+        "404":
+          description: el objeto no existe
+        "409":
+          description: conflicto de acceso
+      x-swagger-router-controller: DatosFacturacion
+    post:
+      tags:
+      - datosFacturacion
+      summary: para dar de alta una facturacion para un usuario en el sistema
+      description: "Se incluye un recibo en el sistema y se devuelve el objeto creado,\
+        \ incluído su id"
+      operationId: addDatosFacturacion
+      parameters:
+      - name: idUsuario
+        in: path
+        description: Id del Usuario
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: number
+          example: 1
+      requestBody:
+        description: Datos de facturacion a insertar
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatosFacturacion'
+      responses:
+        "200":
+          description: facturacion creada con éxito
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DatosFacturacion'
+                x-content-type: application/json
+        "400":
+          description: "entrada incorrecta, object incorrecto"
+      x-swagger-router-controller: DatosFacturacion
+    delete:
+      tags:
+      - datosFacturacion
+      summary: "para dar de baja un recibo emitido a un usuario en el sistema, para\
+        \ un mes dado"
+      description: Indicando idUsuario se eliminan sus datos de recibo emitido en
+        el sistema
+      operationId: delDatosFacturacion
+      parameters:
+      - name: idUsuario
+        in: path
+        description: Id del Usuario
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: number
+          example: 1
+      responses:
+        "200":
+          description: facturacion borrada con éxito
+        "400":
+          description: "entrada incorrecta, object incorrecto"
+      x-swagger-router-controller: DatosFacturacion
+components:
+  schemas:
+    DatosPersonales:
+      required:
+      - direccionUsuario
+      - edadUsuario
+      - idUsuario
+      - nombreUsuario
+      - telUsuario
+      type: object
+      properties:
+        idUsuario:
+          type: number
+          example: 1
+        nombreUsuario:
+          type: string
+          example: Pedro Garcia
+        direccionUsuario:
+          type: string
+          example: Rua del Trece Percebe
+        edadUsuario:
+          type: number
+          example: 23
+        telUsuario:
+          type: string
+          example: "34123456789"
+      description: Registro con los datos personales del usuario
+      example:
+        telUsuario: "34123456789"
+        direccionUsuario: Rua del Trece Percebe
+        idUsuario: 1
+        edadUsuario: 23
+        nombreUsuario: Pedro Garcia
+    DatosBancarios:
+      required:
+      - cuentaUsuario
+      - direccionEntidad
+      - idUsuario
+      - nombreUsuario
+      - titularCuenta
+      type: object
+      properties:
+        idUsuario:
+          type: number
+          example: 1
+        nombreUsuario:
+          type: string
+          example: Pedro Garcia
+        direccionEntidad:
+          type: string
+          example: Rua del Trece Percebe
+        cuentaUsuario:
+          type: string
+          example: ES00-0000-0000-00-0000000000
+        titularCuenta:
+          type: string
+          example: Pedro Garcia
+      description: Registro con los datos bancarios del usuario
+      example:
+        cuentaUsuario: ES00-0000-0000-00-0000000000
+        titularCuenta: Pedro Garcia
+        idUsuario: 1
+        nombreUsuario: Pedro Garcia
+        direccionEntidad: Rua del Trece Percebe
+    DatosFacturacion:
+      required:
+      - direccionUsuario
+      - estadoRecibo
+      - fechaVencimiento
+      - idUsuario
+      - importeRecibo
+      - mesRecibo
+      - nombreUsuario
+      type: object
+      properties:
+        idUsuario:
+          type: number
+          example: 1
+        nombreUsuario:
+          type: string
+          example: Pedro Garcia
+        direccionUsuario:
+          type: string
+          example: Rua del Trece Percebe
+        mesRecibo:
+          type: number
+          example: 2
+        fechaVencimiento:
+          type: string
+          example: 12/12/2021
+        importeRecibo:
+          type: number
+          example: 50
+        estadoRecibo:
+          type: string
+          example: Emitido
+      description: Registro con los datos relativos al recibo de facturacion
+      example:
+        mesRecibo: 2
+        estadoRecibo: Emitido
+        direccionUsuario: Rua del Trece Percebe
+        fechaVencimiento: 12/12/2021
+        idUsuario: 1
+        nombreUsuario: Pedro Garcia
+        importeRecibo: 50
