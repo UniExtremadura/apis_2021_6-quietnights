@@ -394,18 +394,23 @@ components:
       properties:
         idUsuario:
           type: number
+          required: true
           example: 1
         nombreUsuario:
           type: string
+          required: true
           example: Pedro Garcia
         direccionUsuario:
           type: string
+          required: true
           example: Rua del Trece Percebe
         edadUsuario:
           type: number
+          required: true
           example: 23
         telUsuario:
           type: string
+          required: true
           example: "34123456789"
       description: Registro con los datos personales del usuario
       example:
@@ -425,18 +430,23 @@ components:
       properties:
         idUsuario:
           type: number
+          required: true
           example: 1
         nombreUsuario:
           type: string
+          required: true
           example: Pedro Garcia
         direccionEntidad:
           type: string
+          required: true
           example: Rua del Trece Percebe
         cuentaUsuario:
           type: string
+          required: true
           example: ES00-0000-0000-00-0000000000
         titularCuenta:
           type: string
+          required: true
           example: Pedro Garcia
       description: Registro con los datos bancarios del usuario
       example:
@@ -458,24 +468,31 @@ components:
       properties:
         idUsuario:
           type: number
+          required: true
           example: 1
         nombreUsuario:
           type: string
+          required: true
           example: Pedro Garcia
         direccionUsuario:
           type: string
+          required: true
           example: Rua del Trece Percebe
         mesRecibo:
           type: number
+          required: true
           example: 2
         fechaVencimiento:
           type: string
+          required: true
           example: 12/12/2021
         importeRecibo:
           type: number
+          required: true
           example: 50
         estadoRecibo:
           type: string
+          required: true
           example: Emitido
       description: Registro con los datos relativos al recibo de facturacion
       example:
