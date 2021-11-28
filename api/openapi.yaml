@@ -307,6 +307,7 @@ paths:
           example: 1
       requestBody:
         description: Datos de facturacion a actualizar
+        required: true
         content:
           application/json:
             schema:
