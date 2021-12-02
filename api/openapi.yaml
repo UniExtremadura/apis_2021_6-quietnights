@@ -395,19 +395,14 @@ components:
       properties:
         idUsuario:
           type: number
-          example: 1
         nombreUsuario:
           type: string
-          example: Pedro Garcia
         direccionUsuario:
           type: string
-          example: Rua del Trece Percebe
         edadUsuario:
           type: number
-          example: 23
         telUsuario:
           type: string
-          example: "34123456789"
       description: Registro con los datos personales del usuario
       example:
         telUsuario: "34123456789"
@@ -426,19 +421,14 @@ components:
       properties:
         idUsuario:
           type: number
-          example: 1
         nombreUsuario:
           type: string
-          example: Pedro Garcia
         direccionEntidad:
           type: string
-          example: Rua del Trece Percebe
         cuentaUsuario:
           type: string
-          example: ES00-0000-0000-00-0000000000
         titularCuenta:
           type: string
-          example: Pedro Garcia
       description: Registro con los datos bancarios del usuario
       example:
         cuentaUsuario: ES00-0000-0000-00-0000000000
@@ -459,25 +449,18 @@ components:
       properties:
         idUsuario:
           type: number
-          example: 1
         nombreUsuario:
           type: string
-          example: Pedro Garcia
         direccionUsuario:
           type: string
-          example: Rua del Trece Percebe
         mesRecibo:
           type: number
-          example: 2
         fechaVencimiento:
           type: string
-          example: 12/12/2021
         importeRecibo:
           type: number
-          example: 50
         estadoRecibo:
           type: string
-          example: Emitido
       description: Registro con los datos relativos al recibo de facturacion
       example:
         mesRecibo: 2
